@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap');
+:root {
+  color-scheme: dark;
+  --ink: #f6f2ff;
+  --muted: #a9afd0;
+  --gold: #ffd98a;
+  --panel: rgba(20, 26, 57, .88);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: radial-gradient(ellipse at 50% 0%, #29345f 0%, #151b3b 42%, #0b1025 100%);
+  color: var(--ink);
+  font-family: "Nunito", system-ui, sans-serif;
+  display: grid;
+  place-items: center;
+  padding: max(14px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom));
+  overflow-x: hidden;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .24;
+  background-image: radial-gradient(#fff 1px, transparent 1.5px);
+  background-size: 53px 53px; background-position: 9px 17px;
+}
+.game-shell { width: min(100%, 980px); position: relative; z-index: 1; }
+.topbar { display:flex; justify-content:space-between; align-items:center; padding: 0 4px 14px; }
+.brand { color: #f8e8bd; text-decoration:none; font-size: .82rem; font-weight:900; letter-spacing:.22em; display:flex; gap:10px; align-items:center; }
+.brand-mark { color: var(--gold); font-size:1.3rem; }
+.icon-button {
+  border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.07); color:var(--ink);
+  width:40px;height:40px;border-radius:13px;font-size:1.15rem;cursor:pointer;
+}
+.icon-button[aria-pressed="false"] { opacity:.55; }
+.game-card {
+  background: var(--panel); border:1px solid rgba(190,202,255,.2); border-radius:22px;
+  box-shadow: 0 25px 80px rgba(0,0,0,.38), inset 0 1px rgba(255,255,255,.08);
+  padding: clamp(10px, 2vw, 18px); backdrop-filter: blur(12px);
+}
+.hud { display:grid; grid-template-columns:1fr 1fr 1fr; align-items:center; padding:2px 7px 13px; }
+.hud > div:nth-child(2) { text-align:center; }
+.hud-label { display:block; color:#9ea9d4; font-size:.62rem; font-weight:900; letter-spacing:.19em; }
+.hud strong { font-size:1.15rem; letter-spacing:.08em; color:#fff4d4; }
+.lives { display:flex; justify-content:flex-end; gap:5px; color:#ff9eae; font-size:1.15rem; }
+.lives span.lost { opacity:.18; }
+.canvas-wrap { position:relative; overflow:hidden; border-radius:14px; background:#111b3b; line-height:0; touch-action: manipulation; }
+canvas { display:block; width:100%; height:auto; aspect-ratio:16/9; }
+.overlay {
+  position:absolute; inset:0; display:grid; place-items:center; text-align:center;
+  background:linear-gradient(180deg,rgba(8,14,36,.35),rgba(8,14,36,.76));
+  padding:18px; line-height:1.4; transition:opacity .25s ease;
+}
+.overlay.hidden { opacity:0; pointer-events:none; }
+.overlay-content { width:min(100%,460px); }
+.owl-emblem { font-size:clamp(2.7rem,7vw,4.4rem); filter:drop-shadow(0 8px 16px rgba(0,0,0,.3)); margin-bottom:5px; }
+.eyebrow { color:var(--gold); font-size:.62rem; font-weight:900; letter-spacing:.19em; margin:0 0 5px; }
+h1 { font-size:clamp(2rem,6vw,3.8rem); line-height:1; letter-spacing:-.045em; margin:8px 0 12px; color:#fff4d4; }
+#overlay-copy { color:#d2d8f2; font-size:clamp(.82rem,2vw,1rem); margin:0 auto 20px; max-width:350px; }
+.primary-button {
+  border:0; border-radius:999px; padding:13px 27px; min-width:160px; cursor:pointer;
+  background:linear-gradient(135deg,#ffe4a5,#ffbd70); color:#342448; font:900 .85rem "Nunito",sans-serif;
+  letter-spacing:.12em; box-shadow:0 8px 22px rgba(255,190,112,.25); transition:transform .15s,filter .15s;
+}
+.primary-button:hover { transform:translateY(-2px); filter:brightness(1.06); }
+.primary-button span { padding-left:12px; font-size:1.1rem; }
+.help { color:#aab4d9; font-size:.7rem; margin:14px 0 0; }
+kbd { border:1px solid #65719c; border-radius:5px; padding:2px 5px; color:#e7eaff; font:inherit; }
+.game-footer { display:flex; justify-content:space-between; gap:10px; padding:12px 5px 1px; color:#8995bf; font-size:.6rem; font-weight:900; letter-spacing:.12em; }
+.toast { position:absolute; top:14%; left:50%; transform:translate(-50%,-8px); color:#fff1b9; font-weight:900; letter-spacing:.1em; font-size:.85rem; opacity:0; pointer-events:none; text-shadow:0 2px 8px #1a2044; transition:opacity .2s,transform .2s; }
+.toast.show { opacity:1; transform:translate(-50%,0); }
+.mobile-hint { display:none; text-align:center; color:#aab4d9; font-size:.75rem; margin:12px 0 0; }
+.site-footer { text-align:center; color:#7783ae; font-size:.68rem; letter-spacing:.08em; margin-top:18px; }
+.site-footer span { color:#ff9eae; }
+@media (max-width:600px) {
+  body { padding-left:8px; padding-right:8px; }
+  .topbar { padding-bottom:10px; }
+  .game-card { border-radius:17px; padding:8px; }
+  .canvas-wrap { border-radius:11px; }
+  .mobile-hint { display:block; }
+  .game-footer { font-size:.52rem; }
+  .help { font-size:.62rem; }
+}
+@media (max-height:650px) and (min-width:700px) {
+  body { padding-top:8px; padding-bottom:8px; }
+  .site-footer { margin-top:8px; }
+  .game-card { padding:10px; }
+}

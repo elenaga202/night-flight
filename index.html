@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10152f">
+  <meta name="description" content="Night Flight: ayuda al búho a volar entre las ramas y recoger luciérnagas.">
+  <title>Night Flight — El vuelo nocturno</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Night Flight inicio">
+        <span class="brand-mark">✦</span><span>NIGHT FLIGHT</span>
+      </a>
+      <button id="sound-toggle" class="icon-button" type="button" aria-label="Activar o desactivar sonido" aria-pressed="true">♫</button>
+    </header>
+
+    <section class="game-card" aria-label="Juego Night Flight">
+      <div class="hud" aria-live="polite">
+        <div><span class="hud-label">PUNTOS</span><strong id="score">000</strong></div>
+        <div class="hud-center"><span class="hud-label">VUELO</span><strong id="time">60</strong></div>
+        <div class="lives" aria-label="Tres vidas"><span id="life-1">♥</span><span id="life-2">♥</span><span id="life-3">♥</span></div>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="game" width="960" height="540" aria-label="Juego: toca o pulsa espacio para hacer volar al búho"></canvas>
+        <div id="overlay" class="overlay">
+          <div class="overlay-content">
+            <div class="owl-emblem" aria-hidden="true">🦉</div>
+            <p class="eyebrow">UNA AVENTURA ENTRE LAS ESTRELLAS</p>
+            <h1 id="overlay-title">Night Flight</h1>
+            <p id="overlay-copy">Surca el cielo nocturno, esquiva las ramas y recoge luciérnagas.</p>
+            <button id="start-button" class="primary-button" type="button">JUGAR <span>→</span></button>
+            <p class="help">Pulsa <kbd>ESPACIO</kbd> o toca la pantalla para aletear.</p>
+          </div>
+        </div>
+        <div id="toast" class="toast" aria-live="polite"></div>
+      </div>
+      <footer class="game-footer">
+        <span>✦ NOCHE TRANQUILA, VUELO VALIENTE ✦</span>
+        <span id="best-score">RÉCORD: 000</span>
+      </footer>
+    </section>
+    <p class="mobile-hint">En móvil, toca en cualquier parte del juego para aletear.</p>
+    <footer class="site-footer">Hecho para volar. <span>♥</span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
